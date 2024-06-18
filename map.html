@@ -391,7 +391,7 @@
                 });
                 const data = await response.json();
                 previousBusLocation = [...presentBusLocation];
-                presentBusLocation = [data.latitude.toFixed(6), data.longitude.toFixed(6)];
+                presentBusLocation = [data.latitude, data.longitude];
                 console.log(presentBusLocation);
                 console.log(shouldFollowMarker);
 
