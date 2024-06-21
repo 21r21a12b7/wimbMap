@@ -350,6 +350,7 @@
                     if (speed != 0) {
                         timeHr = distanceKm / speed;
                     }
+                    console.log(summary.totalTime/60);
 
                     let distance, time;
                     if (distanceKm < 1) {
@@ -498,10 +499,12 @@
 
         var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
         });
 
         var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
         });
 
         var baseMaps = {
@@ -511,7 +514,8 @@
 
         var map = L.map('map', {
             zoomControl: false,
-            attributionControl: false,
+            attributionControl: true,
+            attribution: '© OpenStreetMap contributors',
             layers: [streetLayer], // Default layer is street view
             zoomSnap: 0.25 // Adjust this value as needed
         }).setView([0, 0], 19);
@@ -548,7 +552,6 @@
                         polyline.setStyle({ weight: 3 });
                     });
                 });
-
                 destinationLocation = coordinates[coordinates.length - 1];
                 var destinationMarker = L.marker(destinationLocation, {
                     icon: L.icon({
