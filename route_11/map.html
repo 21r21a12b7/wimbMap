@@ -243,34 +243,34 @@
 <body>
     <header>
         <div class="logo-menu">
-            <img class="logo" src="img/logo.svg" alt="Logo" onclick="redirectToIndex();">
-            <img class="change" src="img/change.svg" alt="Change" onclick="redirectToChange();">
-            <img class="settings" src="img/settings.svg" alt="Settings" onclick="redirectToSettings();">
+            <img class="logo" src="/img/logo.svg" alt="Logo" onclick="redirectToIndex();">
+            <img class="change" src="/img/change.svg" alt="Change" onclick="redirectToChange();">
+            <img class="settings" src="/img/settings.svg" alt="Settings" onclick="redirectToSettings();">
         </div>
         <div class="update-from-to">
             <span id="routeText">To BusStop</span>
         </div>
         <div class="info-panel">
             <div class="info-item">
-                <img src="img/distance.svg" alt="Distance" style="height: 28px; width: 28px;">
+                <img src="/img/distance.svg" alt="Distance" style="height: 28px; width: 28px;">
                 <span id="distance">Loading...</span>
             </div>
             <div class="info-item">
-                <img src="img/time.svg" alt="Time" style="height: 28px; width: 28px;">
+                <img src="/img/time.svg" alt="Time" style="height: 28px; width: 28px;">
                 <span id="time">Loading...</span>
             </div>
             <div class="info-item">
-                <img src="img/speed.svg" alt="Speed" style="height: 28px; width: 28px;">
+                <img src="/img/speed.svg" alt="Speed" style="height: 28px; width: 28px;">
                 <span id="speed">Loading...</span>
             </div>
-            <img class="refresh-button" src="img/refresh.png" alt="Refresh" style="height: 28px; width: 28px;"
+            <img class="refresh-button" src="/img/refresh.png" alt="Refresh" style="height: 28px; width: 28px;"
                 onclick="window.location.reload();">
         </div>
     </header>
     <div class="map-section">
         <div id="map">
             <div id="layerButton" onclick="toggleMapLayer()">
-                <img id="layerButtonImg" src="img/toSatellite.png" alt="Layers">
+                <img id="layerButtonImg" src="/img/toSatellite.png" alt="Layers">
             </div>
             <script>
                 var istTime = new Date().getHours();
@@ -279,7 +279,7 @@
                     document.write(`
                     <div class="floating-button" id="isInBus">
                         <div class="button-content">
-                            <span id="buttonText"><img src="img/left.png" alt="Left Arrow" width="15" height="15"></span>
+                            <span id="buttonText"><img src="/img/left.png" alt="Left Arrow" width="15" height="15"></span>
                             <div class="toggle-content" id="toggleContent">
                                 <span>In Bus?</span>
                                 <label class="switch">
@@ -294,7 +294,7 @@
             </script>
         </div>
     </div>
-    <img class="follow-marker-button" src="img/follow.svg" alt="Follow Marker" onclick="toggleFollowMarker()">
+    <img class="follow-marker-button" src="/img/follow.svg" alt="Follow Marker" onclick="toggleFollowMarker()">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
@@ -403,7 +403,7 @@
                     if (!busMarker) {
                         busMarker = L.marker(presentBusLocation, {
                             icon: L.icon({
-                                iconUrl: 'img/bus.svg',
+                                iconUrl: '/img/bus.svg',
                                 iconSize: [32, 32],
                                 iconAnchor: [16, 32],
                             })
@@ -522,9 +522,9 @@
 
         var path = '';
         if (istTime >= 2 && istTime <= 14) {
-            path = 'mlrit_route1_morning.json';
+            path = '/route_11/mlrit_route1_morning.json';
         } else {
-            path = 'mlrit_route1_evening.json';
+            path = '/route_11/mlrit_route1_evening.json';
         }
 
         fetch(path)
@@ -537,7 +537,7 @@
                 sourceLocation = coordinates[0];
                 var sourceMarker = L.marker(sourceLocation, {
                     icon: L.icon({
-                        iconUrl: 'img/firstStop.svg',
+                        iconUrl: '/img/firstStop.svg',
                         iconSize: [40, 40],
                         iconAnchor: [16, 32],
                     })
@@ -555,7 +555,7 @@
                 destinationLocation = coordinates[coordinates.length - 1];
                 var destinationMarker = L.marker(destinationLocation, {
                     icon: L.icon({
-                        iconUrl: 'img/college.png',
+                        iconUrl: '/img/college.png',
                         iconSize: [32, 32],
                         iconAnchor: [16, 32],
                     })
@@ -583,13 +583,13 @@
                 map.removeLayer(streetLayer);
                 map.addLayer(satelliteLayer);
                 polyline.setStyle({ color: '#1036cc', weight: 3 });
-                document.getElementById('layerButtonImg').src = 'img/toStreet4.png';
+                document.getElementById('layerButtonImg').src = '/img/toStreet4.png';
                 document.getElementById('layerButton').classList.add('active');
             } else {
                 map.removeLayer(satelliteLayer);
                 map.addLayer(streetLayer);
                 polyline.setStyle({ color: 'black', weight: 3 });
-                document.getElementById('layerButtonImg').src = 'img/toSatellite.png';
+                document.getElementById('layerButtonImg').src = '/img/toSatellite.png';
                 document.getElementById('layerButton').classList.remove('active');
             }
             isStreetView = !isStreetView;
@@ -598,7 +598,7 @@
 
         var studentStopMarker = L.marker(studentStopLocation, {
             icon: L.icon({
-                iconUrl: 'img/studentStop.svg',
+                iconUrl: '/img/studentStop.svg',
                 iconSize: [35, 35],
                 iconAnchor: [16, 32],
             })
@@ -632,11 +632,11 @@
                 isInBusButton.addEventListener("click", function () {
                     if (isInBusButton.classList.contains("expanded")) {
                         isInBusButton.classList.remove("expanded");
-                        buttonText.innerHTML = "<img src='img/left.png' alt='Left Arrow' width='15' height='15'>"; // Left arrow image
+                        buttonText.innerHTML = "<img src='/img/left.png' alt='Left Arrow' width='15' height='15'>"; // Left arrow image
                         toggleContent.style.display = "none";
                     } else {
                         isInBusButton.classList.add("expanded");
-                        buttonText.innerHTML = "<img src='img/right.png' alt='Right Arrow' width='15' height='15'>"; // Right arrow image
+                        buttonText.innerHTML = "<img src='/img/right.png' alt='Right Arrow' width='15' height='15'>"; // Right arrow image
                         toggleContent.style.display = "flex";
                     }
                 });
