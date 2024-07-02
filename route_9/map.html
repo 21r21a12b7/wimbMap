@@ -244,7 +244,7 @@
     <header>
         <div class="logo-menu">
             <img class="logo" src="../img/logo.svg" alt="Logo" onclick="redirectToIndex();">
-            <img class="change" src="../img/change_route_11.svg" alt="Change" onclick="redirectToChange();">
+            <img class="change" src="../img/change_route_9.svg" alt="Change" onclick="redirectToChange();">
             <img class="settings" src="../img/settings.svg" alt="Settings" onclick="redirectToSettings();">
         </div>
         <div class="update-from-to">
@@ -522,9 +522,9 @@
 
         var path = '';
         if (istTime >= 2 && istTime <= 14) {
-            path = 'mlrit_route11_morning.json';
+            path = 'mlrit_route9_morning.json';
         } else {
-            path = 'mlrit_route11_evening.json';
+            path = 'mlrit_route9_evening.json';
         }
 
         fetch(path)
