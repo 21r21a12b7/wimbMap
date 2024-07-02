@@ -317,7 +317,7 @@
         let previousBusLocation = [0, 0];
         let presentBusLocation = [0, 0];
         const studentStopLocation = [17.559267, 78.490467];
-        
+
         // Handle here , Do fetch the studentstop from DataBase and assign to "studentStopLocation" variable
 
         let toLocation = studentStopLocation;
@@ -350,7 +350,7 @@
                     if (speed != 0) {
                         timeHr = distanceKm / 20;
                     }
-                    console.log(summary.totalTime/60);
+                    console.log(summary.totalTime / 60);
 
                     let distance, time;
                     if (distanceKm < 1) {
@@ -387,15 +387,21 @@
 
 
         async function fetchBusLocation() {
+            const url = "https://demo4.traccar.org/api/positions?deviceId=1302";
+            const authToken = "RjBEAiBirW9Oxzjf6S8RpAgr5-g0SO5PHmFEnBzGTLcjItNbvQIgArT0jXNDPmV76ekStIi6e6oeC_XPb3maPGp1BK2aHX57InUiOjI2NjkwLCJlIjoiMjAyNC0wNy0wOFQxODozMDowMC4wMDArMDA6MDAifQ";
+
             try {
-                const response = await fetch('https://web.onelap.in/api/positions/latest?deviceId=117392', {
+                const response = await fetch(url, {
+                    method: 'GET',
                     headers: {
-                        Authorization: "OTExMDUyMTE3MzpQc2FpMTIzQC5jb20="
+                        'Authorization': `Bearer ${authToken}`,
+                        'Accept': 'application/json'
                     }
                 });
+
                 const data = await response.json();
                 previousBusLocation = [...presentBusLocation];
-                presentBusLocation = [data.latitude, data.longitude];
+                presentBusLocation = [data[0].latitude, data[0].longitude]; // Assuming the response is an array
                 console.log(presentBusLocation);
                 console.log(shouldFollowMarker);
 
@@ -420,33 +426,29 @@
                                 polyline.setStyle({ weight: 3 });
                                 shouldFollowMarker = true;
                                 document.querySelector('.follow-marker-button').style.backgroundColor = 'white';
-
                             });
                         });
                     } else {
                         animateMarker(busMarker, previousBusLocation, presentBusLocation, 1000);
                     }
 
-                    // console.log(shouldFollowMarker);
-
                     if (shouldFollowMarker) {
                         map.flyTo(presentBusLocation, 19, {
                             animate: true,
                         });
                     }
-                    const result = await calculateDistanceTimeSpeed(presentBusLocation, toLocation, data.speed);
+                    const speed = Math.round(data[0].speed);
+                    const result = await calculateDistanceTimeSpeed(presentBusLocation, toLocation, data[0].speed);
                     document.getElementById('distance').textContent = result.distance;
                     document.getElementById('time').textContent = result.time;
-                    document.getElementById('speed').textContent = `${data.speed}kmph`;
-
-                }
-                else {
-
+                    document.getElementById('speed').textContent = `${speed}kmph`;
+                } else {
                     if (shouldCalculateRoute === true) {
-                        const result = await calculateDistanceTimeSpeed(presentBusLocation, toLocation, data.speed);
+                        const speed = Math.round(data[0].speed);
+                        const result = await calculateDistanceTimeSpeed(presentBusLocation, toLocation, data[0].speed);
                         document.getElementById('distance').textContent = result.distance;
                         document.getElementById('time').textContent = result.time;
-                        document.getElementById('speed').textContent = `${data.speed}kmph`;
+                        document.getElementById('speed').textContent = `${speed}kmph`;
                         shouldCalculateRoute = false;
                     }
                 }
