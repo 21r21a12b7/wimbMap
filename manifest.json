@@ -1,0 +1,16 @@
+{
+    "name": "PWA Bus Animation",
+    "short_name": "Bus Animation",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "logoMain.png",
+        "sizes": "682x682",
+        "type": "image/png"
+      }
+    ]
+  }
+  
