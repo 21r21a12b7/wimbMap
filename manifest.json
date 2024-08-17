@@ -1,16 +1,15 @@
 {
-  "name": "PWA Bus Animation",
-  "short_name": "Bus Animation",
-  "description": "A PWA with offline animation using Lottie.",
+  "name": "Bus Animation PWA",
+  "short_name": "BusAnimation",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "A PWA that shows bus animation.",
   "icons": [
       {
           "src": "logoMain.png",
           "sizes": "682x682",
           "type": "image/png"
       }
-  ],
-  "start_url": "index.html",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000"
+  ]
 }
