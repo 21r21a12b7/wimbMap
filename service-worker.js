@@ -3,6 +3,7 @@ const assetsToCache = [
     'index.html',
     'style.css',
     'script.js',
+    'manifest.json',
     'busAnimation.json',
     'logoMain.png'
 ];
